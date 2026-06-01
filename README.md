@@ -1,13 +1,51 @@
-# SpeedScore
+# SpeedScore — Lab 9 Frontend Starter
 
-This repository contains the code for the SpeedScore personal speedfgolf app developed in the book *Full Stack Web Development from the Ground Up* (first edition) by Chris Hundhausen, published by Morgan Kaufmann.
+This repository contains the SpeedScore frontend (React) at the end of Chapter 16 of
+*Full Stack Web Development from the Ground Up*. It is the starting point for **Lab 9: Deployment**.
 
-The code in each chapter is developed in a feature branch named after the chapter (e.g., 'ch3').
+## What's In Here
 
-The book's development of SpeedScore is mostly *cumulative*. Thus, each chapter's feature branch is often merged into the main branch, so that the main branch contains the final software product that emerges from the book's development activities.
+- A React app (`src/`) with user authentication UI, rounds mode, and courses mode
+- Static assets in `public/` (HTML entry point, icons, manifest)
+- Playwright end-to-end tests in `tests/`
+- `package.json` with `start`, `build`, `test`, and `eject` scripts
 
-Tagged code snapshots take the project from its initial state through its final state, following the development progression in the chapter's featured code blocks. To follow along with a chapter, you can
- * check out the feature branch associated with the chapter, e.g., `git checkout -b ch3`, which shows you the *final state* of the code at the end of the chatper, or
- * view the code *at a specific point in the chapter* by checking out a tagged version of the code referenced in the chapter, e.g., `git checkout -b ch3s1`. Git tags are used to name each chapter's snapshots sequentially as ch*x*s*y*, where *x* is the chapter number and *y* is the snapshot number. Snapshots start at 0 for each chapter.
+## Getting Started Locally
 
-For detailed instructions on how to get the most out of the book's companion code, please see Box 3.1 ("Exploring the Book's Code Using Git, GitHub and VSC") in Chapter 3.
+```bash
+npm install
+```
+
+Create a `.env` file at the repo root:
+
+```
+REACT_APP_GOOGLE_PLACES_API_KEY=your_key_here
+```
+
+Start the dev server:
+
+```bash
+npm start
+```
+
+The app is available at `http://localhost:3000`.
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+This creates an optimized production build in `build/`. Serve the contents of `build/`
+from your hosting platform.
+
+## Known Deployment Gotchas
+
+- **Google Places API key** — `REACT_APP_GOOGLE_PLACES_API_KEY` must be injected as a
+  build-time environment variable on your hosting platform. A local `.env` value is
+  baked into the build at `npm run build` time, but most platforms require you to set
+  this in their environment variable settings so it is available when the platform runs
+  the build command.
+- **Backend URL** — The frontend calls the SpeedScore backend API. In development it
+  defaults to `http://localhost:3000`. When deploying, you will need to configure the
+  API base URL to point at your deployed backend.
